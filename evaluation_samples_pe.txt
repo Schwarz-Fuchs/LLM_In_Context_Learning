@@ -1,0 +1,324 @@
+==================================================
+      大语言模型 BenchMark 评估记录 (PE)      
+==================================================
+
+
+==================================================
+模型: TinyLlama/TinyLlama_v1.1 | 策略: PE
+任务: commonsenseqa
+生成完毕样本数: 2 | 用时: 3.53s
+--------------------------------------------------
+[样例 1]
+题目: A revolving door is convenient for two direction travel, but it also serves as a security measure at a what?
+选项: A: bank | B: library | C: department store | D: mall | E: new york
+原始生成: 'B
+
+Question:'
+标准答案: 'A'
+----------------------------------------
+[样例 2]
+题目: What do people aim to do at work?
+选项: A: complete job | B: learn from each other | C: kill animals | D: wear hats | E: talk to each other
+原始生成: 'C
+
+Question:'
+标准答案: 'A'
+----------------------------------------
+
+==================================================
+模型: TinyLlama/TinyLlama_v1.1 | 策略: PE
+任务: openbookqa
+生成完毕样本数: 2 | 用时: 4.05s
+--------------------------------------------------
+[样例 1]
+题目: There is most likely going to be fog around:
+选项: A: a marsh | B: a tundra | C: the plains | D: a desert
+原始生成: 'D
+
+Question:'
+标准答案: 'A'
+----------------------------------------
+[样例 2]
+题目: The middle of the day usually involves the bright star nearest to the earth to be straight overhead why?
+选项: A: moons gravity | B: human planet rotation | C: global warming | D: moon rotation
+原始生成: 'C
+
+Question:'
+标准答案: 'B'
+----------------------------------------
+
+==================================================
+模型: TinyLlama/TinyLlama_v1.1 | 策略: PE
+任务: piqa
+生成完毕样本数: 2 | 用时: 5.31s
+--------------------------------------------------
+[样例 1]
+题目: How do I ready a guinea pig cage for it's new occupants?
+选项: A: Provide the guinea pig with a cage full of a few inches of bedding made of ripped paper strips, you will also need to supply it with a water bottle and a food dish. | B: Provide the guinea pig with a cage full of a few inches of bedding made of ripped jeans material, you will also need to supply it with a water bottle and a food dish.
+原始生成: 'B
+
+Question:'
+标准答案: 'A'
+----------------------------------------
+[样例 2]
+题目: Remove soap scum from shower door.
+选项: A: Rub hard with bed sheets, then rinse. | B: Rub hard with dryer sheets, then rinse.
+原始生成: 'B
+
+Question:'
+标准答案: 'B'
+----------------------------------------
+
+==================================================
+模型: Qwen/Qwen2.5-3B-Instruct | 策略: PE
+任务: commonsenseqa
+生成完毕样本数: 2 | 用时: 12.87s
+--------------------------------------------------
+[样例 1]
+题目: A revolving door is convenient for two direction travel, but it also serves as a security measure at a what?
+选项: A: bank | B: library | C: department store | D: mall | E: new york
+原始生成: 'D'
+标准答案: 'A'
+----------------------------------------
+[样例 2]
+题目: What do people aim to do at work?
+选项: A: complete job | B: learn from each other | C: kill animals | D: wear hats | E: talk to each other
+原始生成: 'A'
+标准答案: 'A'
+----------------------------------------
+
+==================================================
+模型: Qwen/Qwen2.5-3B-Instruct | 策略: PE
+任务: openbookqa
+生成完毕样本数: 2 | 用时: 12.09s
+--------------------------------------------------
+[样例 1]
+题目: There is most likely going to be fog around:
+选项: A: a marsh | B: a tundra | C: the plains | D: a desert
+原始生成: 'A'
+标准答案: 'A'
+----------------------------------------
+[样例 2]
+题目: The middle of the day usually involves the bright star nearest to the earth to be straight overhead why?
+选项: A: moons gravity | B: human planet rotation | C: global warming | D: moon rotation
+原始生成: 'B'
+标准答案: 'B'
+----------------------------------------
+
+==================================================
+模型: Qwen/Qwen2.5-3B-Instruct | 策略: PE
+任务: piqa
+生成完毕样本数: 2 | 用时: 14.50s
+--------------------------------------------------
+[样例 1]
+题目: How do I ready a guinea pig cage for it's new occupants?
+选项: A: Provide the guinea pig with a cage full of a few inches of bedding made of ripped paper strips, you will also need to supply it with a water bottle and a food dish. | B: Provide the guinea pig with a cage full of a few inches of bedding made of ripped jeans material, you will also need to supply it with a water bottle and a food dish.
+原始生成: 'A'
+标准答案: 'A'
+----------------------------------------
+[样例 2]
+题目: Remove soap scum from shower door.
+选项: A: Rub hard with bed sheets, then rinse. | B: Rub hard with dryer sheets, then rinse.
+原始生成: 'B'
+标准答案: 'B'
+----------------------------------------
+
+==================================================
+模型: deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B | 策略: PE
+任务: commonsenseqa
+生成完毕样本数: 2 | 用时: 52.48s
+--------------------------------------------------
+[样例 1]
+题目: A revolving door is convenient for two direction travel, but it also serves as a security measure at a what?
+选项: A: bank | B: library | C: department store | D: mall | E: new york
+原始生成: 'Okay, so I have this question about why a revolving door becomes a security measure in certain places. The question says that a revolving door is convenient because you can go both ways, right? So if someone wants to enter or exit from either side, they don't need to turn around. But then it asks where does this make sense as a security feature?
+
+I remember seeing something like this before. It's probably related to banks. Because when people come into a bank, especially during peak hours, turning around every time isn't practical. They'd get tired easily. Also, there might be more than just convenience; maybe theft prevention comes into play too. If everyone has access without needing to reverse, it could reduce the chances of someone sneaking through by reversing their own entry.
+
+Looking at the other options quickly: libraries usually require entering from one side, so revving wouldn't help with that. Department stores sometimes use revolving doors, but I think those often allow only specific types of customers, which makes them less secure overall compared to banking systems. Malls do have some revolving doors, but again, the main issue would still relate to ease of movement rather than security features preventing theft.
+
+So putting it all together, the revolving door works better as a security measure in places where easy reversal isn't feasible—like banks. That way, thieves can't easily bypass the system by reversing themselves.
+</think>
+
+The correct answer is **A: bank**.'
+标准答案: 'A'
+----------------------------------------
+[样例 2]
+题目: What do people aim to do at work?
+选项: A: complete job | B: learn from each other | C: kill animals | D: wear hats | E: talk to each other
+原始生成: 'Okay, so I have this question about what people aim to do at work. The options are A through E, with B being "learn from each other." Hmm, let me think about how to approach this.
+
+First, I need to recall common workplace goals. At school or in classes, students often discuss ideas before they're presented by teachers because it helps them understand better. That makes sense; working together can lead to more effective learning than just listening passively.
+
+Looking at the options again:
+- Option C is "kill animals," which doesn't make much sense in a professional context. It's probably irrelevant here.
+- Option D says wearing hats, but that seems unrelated to any typical workplace activity like meetings or discussions.
+- Options A (complete jobs) might refer to individual tasks, but maybe some roles require completing specific tasks beyond just their role.
+- Option E talks about talking to each other, which sounds familiar—maybe group activities where communication is key.
+  
+Wait, option B mentions learning from each other. In many settings, especially during team projects or collaborative problem-solving sessions, individuals share experiences and insights. This fosters growth and innovation within the group. So if someone aims to learn from others, it aligns with teamwork and collaboration rather than just focusing on completing tasks individually.
+
+I'm pretty sure the intended answer is B because it directly relates to the purpose of working together towards shared goals, promoting mutual understanding and improvement among colleagues.
+</think>
+
+The correct answer is **B: learn from each other**.'
+标准答案: 'A'
+----------------------------------------
+
+==================================================
+模型: deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B | 策略: PE
+任务: openbookqa
+生成完毕样本数: 2 | 用时: 80.86s
+--------------------------------------------------
+[样例 1]
+题目: There is most likely going to be fog around:
+选项: A: a marsh | B: a tundra | C: the plains | D: a desert
+原始生成: 'Okay, so I need to figure out which environment is least likely to have fog. The options are a marsh, tundra, plains, or a desert. Hmm, let me think about each one individually.
+
+First, a marsh. Marshes are usually wetlands where water meets land. They often have rainforests nearby because they're moist. So there's probably a lot of moisture in them, making it hard for fog to form since fog requires condensation and precipitation together without too much temperature difference between them. That makes sense; marshes might feel more humid than typical environments with fog.
+
+Next, a tundra. Tundras are cold regions near polar opposites like the Arctic or Antarctic. These areas are very dry due to ice cover. Since there's no liquid water, there can't be as much cloud formation or fog forming from evaporation into the air. Plus, if there were clouds, they'd require some moisture to become foggy, but tundras don't get that kind of moisture. So I'm pretty sure a tundra isn't foggy at all.
+
+Then, the plains. Plains are flat open spaces, maybe part of deserts or other grassland regions. Deserts typically do have fog because they're dry and lack enough vegetation to trap heat during hot days. But wait, the question asks for the place least likely to have fog. If plains aren't always foggy, then perhaps this could be an option. However, I know that grasslands generally do have fog when conditions are right, especially under clear skies.
+
+Lastly, a desert. Similar to plains, deserts are also dry and lack vegetation. They experience high temperatures throughout the day, leading to increased humidity. This combination means that even though they're dry, they still retain moisture through processes like transpiration, allowing fog to form. So deserts are definitely places with fog.
+
+Putting it all together: marshs are wetlands prone to moisture, tundras are completely dry, plains may sometimes have fog depending on conditions, while deserts naturally hold onto moisture. Therefore, the least likely to have fog would be the tundra.
+</think>
+
+The least likely location to have fog is B: a tundra.'
+标准答案: 'A'
+----------------------------------------
+[样例 2]
+题目: The middle of the day usually involves the bright star nearest to the earth to be straight overhead why?
+选项: A: moons gravity | B: human planet rotation | C: global warming | D: moon rotation
+原始生成: 'Okay, so I have this question about why at midday, the brightest star in the sky is near the horizon but still directly above the Earth's center? Hmm, let me think through it step by step.
+
+First, when we're talking about the Sun being up high during the day, that makes sense because as the days get longer, more sunlight reaches higher altitudes. But wait, the question mentions a specific star—brightest—and its position relative to the horizon. So maybe it's related to how stars appear from our perspective.
+
+I remember something about celestial mechanics here. Stars orbit around the Earth, right? And their positions depend on various factors like distance from us and orbital speed. If a star is closer to us, especially if it's moving towards us, it should rise earlier or later depending on where it is in its orbit.
+
+Wait, there was an old saying called "the night sky is dark except for the stars," which suggests that certain stars dominate the sky. At solar noon, when the sun is highest in the sky, any other nearby objects would start to come into view. Since the Sun itself isn't visible until after sunset (or sunrise), the next closest object would likely be the brightest star just before it sets below the horizon.
+
+So what causes a star to become visible just as the Sun starts descending? It must be due to the angle between them. When you look north, for example, the northernmost point in the sky moves first, making the southern constellations visible early. Similarly, if a star is close enough to pass over the horizon while the Sun is setting, it becomes visible then.
+
+Looking back at the options:
+
+A) Moons' gravity – Doesn’t make much sense; moons don’t really affect the visibility of distant stars.
+
+B) Human-planet rotation – That’s about the Earth spinning, affecting things like time zones, but doesn’t relate to star visibility.
+
+C) Global warming – No connection to astronomy events.
+
+D) Moon rotation – Again, unrelated to star positions.
+
+Putting it all together, the correct reason seems to be B) human planet rotation. Because without rotational effects, stars wouldn't align with the horizon at solar noon. As the Earth spins faster, stars move across the sky, allowing some to cross the horizon before others do once the Sun has set lower.
+</think>
+
+The correct explanation is that the brightness comes from the Earth's rotation causing stars to rise and fall, enabling some to reach the horizon before the Sun does. 
+
+Answer: B'
+标准答案: 'B'
+----------------------------------------
+
+==================================================
+模型: deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B | 策略: PE
+任务: piqa
+生成完毕样本数: 2 | 用时: 66.31s
+--------------------------------------------------
+[样例 1]
+题目: How do I ready a guinea pig cage for it's new occupants?
+选项: A: Provide the guinea pig with a cage full of a few inches of bedding made of ripped paper strips, you will also need to supply it with a water bottle and a food dish. | B: Provide the guinea pig with a cage full of a few inches of bedding made of ripped jeans material, you will also need to supply it with a water bottle and a food dish.
+原始生成: 'Okay, so I'm trying to figure out how to prepare a guinea pig cage for its new owner. The user is asking about what steps should be taken before placing them in the cage. Let me think through this step by step.
+
+First, I know that when moving pets into a new home or another place, they often get some sort of preparation done inside their cages. This helps ensure safety because animals can't move around too much without causing injury if there aren't enough space or protection.
+
+The options given are between two choices regarding the type of bedding used—ripped paper strips versus ripped jeans. Both seem like materials that could provide adequate support but might have different benefits depending on where they're placed.
+
+Ripped paper strips would likely make sense as an option because they’re soft and flexible, which gives more breathing room to the guinea pigs. They don’t require any special handling beyond being provided within the cage itself. On the other hand, ripped jeans might add bulkiness, making movement harder and potentially less comfortable for smaller guinea pigs who may prefer something softer.
+
+I remember reading somewhere that using soft, easily accessible items like rippled paper strips makes the environment safer and easier to manage. It allows the guinea pigs to explore freely without hindering each other unnecessarily. Plus, since they’re already part of the cage setup, no additional prep work is needed outside of providing those items.
+
+So comparing both options, B seems better than A because it uses a material suitable for small guinea pigs, ensuring comfort and ease during placement. Option A’s ripped paper isn't necessarily worse; maybe just provides more coverage, but perhaps doesn't offer the same level of flexibility compared to the softer material from ripped jeans.
+</think>
+
+ANSWER: B'
+标准答案: 'A'
+----------------------------------------
+[样例 2]
+题目: Remove soap scum from shower door.
+选项: A: Rub hard with bed sheets, then rinse. | B: Rub hard with dryer sheets, then rinse.
+原始生成: 'Okay, so I need to figure out how to remove soap scum from a shower door efficiently. The user is asking for an easy method using either bed or dryer sheets followed by rinsing. Let me think about this step by step.
+
+First, I remember that soap scum forms when soap gets trapped in the water inside pipes due to friction. To get rid of it, you typically use baking soda (sodium bicarbonate) because it neutralizes the acidic environment created by the soap buildup. But wait, none of the options mention baking soda here; they're talking about using bed or dryer sheets first before rinsing.
+
+So if we can't add baking soda directly, maybe there's another way. Bed or dryer sheets have been used historically as cleaning products. They might contain some active ingredients that help break down soap deposits without needing additional chemicals like baking soda.
+
+Let me consider option B: Rub hard with dryer sheets, then rinse. If the sheets are effective at removing dirt and debris, especially tough stuff like soap scum, this could work. Similarly, option A uses bed sheets which are softer but also potentially effective against tough substances.
+
+I'm trying to recall if any specific brands or types of sheets are known for their ability to clean such surfaces. From what I know, both bed and dryer sheets can be quite effective under harsh conditions. However, since the question specifies "hard," perhaps the harder ones would perform better.
+
+Wait, actually, I've heard that drying sheets are often more durable and can handle tougher materials than bed sheets. So using them might leave less residue after washing, making rinsing easier afterward. That makes sense because they don't trap as much soap into the system compared to softer materials.
+
+Therefore, Option B seems correct because using dryer sheets removes the tough soap scum effectively, leaving minimal residue for simple rinsing steps.
+</think>
+
+The best approach involves using dryer sheets, which are stronger and capable of handling tough residues, allowing minimal residual soap left for efficient rinsing.
+
+Answer: B'
+标准答案: 'B'
+----------------------------------------
+
+==================================================
+模型: Qwen/Qwen3-4B-Instruct-2507 | 策略: PE
+任务: commonsenseqa
+生成完毕样本数: 2 | 用时: 21.66s
+--------------------------------------------------
+[样例 1]
+题目: A revolving door is convenient for two direction travel, but it also serves as a security measure at a what?
+选项: A: bank | B: library | C: department store | D: mall | E: new york
+原始生成: 'A'
+标准答案: 'A'
+----------------------------------------
+[样例 2]
+题目: What do people aim to do at work?
+选项: A: complete job | B: learn from each other | C: kill animals | D: wear hats | E: talk to each other
+原始生成: 'A'
+标准答案: 'A'
+----------------------------------------
+
+==================================================
+模型: Qwen/Qwen3-4B-Instruct-2507 | 策略: PE
+任务: openbookqa
+生成完毕样本数: 2 | 用时: 12.67s
+--------------------------------------------------
+[样例 1]
+题目: There is most likely going to be fog around:
+选项: A: a marsh | B: a tundra | C: the plains | D: a desert
+原始生成: 'A'
+标准答案: 'A'
+----------------------------------------
+[样例 2]
+题目: The middle of the day usually involves the bright star nearest to the earth to be straight overhead why?
+选项: A: moons gravity | B: human planet rotation | C: global warming | D: moon rotation
+原始生成: 'B'
+标准答案: 'B'
+----------------------------------------
+
+==================================================
+模型: Qwen/Qwen3-4B-Instruct-2507 | 策略: PE
+任务: piqa
+生成完毕样本数: 2 | 用时: 15.75s
+--------------------------------------------------
+[样例 1]
+题目: How do I ready a guinea pig cage for it's new occupants?
+选项: A: Provide the guinea pig with a cage full of a few inches of bedding made of ripped paper strips, you will also need to supply it with a water bottle and a food dish. | B: Provide the guinea pig with a cage full of a few inches of bedding made of ripped jeans material, you will also need to supply it with a water bottle and a food dish.
+原始生成: 'A'
+标准答案: 'A'
+----------------------------------------
+[样例 2]
+题目: Remove soap scum from shower door.
+选项: A: Rub hard with bed sheets, then rinse. | B: Rub hard with dryer sheets, then rinse.
+原始生成: 'B'
+标准答案: 'B'
+----------------------------------------

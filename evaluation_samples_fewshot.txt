@@ -1,0 +1,331 @@
+==================================================
+      大语言模型 BenchMark 评估记录 (FewShot)      
+==================================================
+
+
+==================================================
+模型: TinyLlama/TinyLlama_v1.1 | 策略: FewShot
+任务: commonsenseqa
+生成完毕样本数: 2 | 用时: 7.29s
+--------------------------------------------------
+[样例 1]
+题目: A revolving door is convenient for two direction travel, but it also serves as a security measure at a what?
+选项: A: bank | B: library | C: department store | D: mall | E: new york
+原始生成: 'D
+Question: What'
+标准答案: 'A'
+----------------------------------------
+[样例 2]
+题目: What do people aim to do at work?
+选项: A: complete job | B: learn from each other | C: kill animals | D: wear hats | E: talk to each other
+原始生成: 'D
+Question: What'
+标准答案: 'A'
+----------------------------------------
+
+==================================================
+模型: TinyLlama/TinyLlama_v1.1 | 策略: FewShot
+任务: openbookqa
+生成完毕样本数: 2 | 用时: 8.45s
+--------------------------------------------------
+[样例 1]
+题目: There is most likely going to be fog around:
+选项: A: a marsh | B: a tundra | C: the plains | D: a desert
+原始生成: 'D
+Question: Which'
+标准答案: 'A'
+----------------------------------------
+[样例 2]
+题目: The middle of the day usually involves the bright star nearest to the earth to be straight overhead why?
+选项: A: moons gravity | B: human planet rotation | C: global warming | D: moon rotation
+原始生成: 'D
+Question: What'
+标准答案: 'B'
+----------------------------------------
+
+==================================================
+模型: TinyLlama/TinyLlama_v1.1 | 策略: FewShot
+任务: piqa
+生成完毕样本数: 2 | 用时: 9.57s
+--------------------------------------------------
+[样例 1]
+题目: How do I ready a guinea pig cage for it's new occupants?
+选项: A: Provide the guinea pig with a cage full of a few inches of bedding made of ripped paper strips, you will also need to supply it with a water bottle and a food dish. | B: Provide the guinea pig with a cage full of a few inches of bedding made of ripped jeans material, you will also need to supply it with a water bottle and a food dish.
+原始生成: 'D
+Question: What'
+标准答案: 'A'
+----------------------------------------
+[样例 2]
+题目: Remove soap scum from shower door.
+选项: A: Rub hard with bed sheets, then rinse. | B: Rub hard with dryer sheets, then rinse.
+原始生成: 'D
+Question: What'
+标准答案: 'B'
+----------------------------------------
+
+==================================================
+模型: Qwen/Qwen2.5-3B-Instruct | 策略: FewShot
+任务: commonsenseqa
+生成完毕样本数: 2 | 用时: 23.71s
+--------------------------------------------------
+[样例 1]
+题目: A revolving door is convenient for two direction travel, but it also serves as a security measure at a what?
+选项: A: bank | B: library | C: department store | D: mall | E: new york
+原始生成: 'A'
+标准答案: 'A'
+----------------------------------------
+[样例 2]
+题目: What do people aim to do at work?
+选项: A: complete job | B: learn from each other | C: kill animals | D: wear hats | E: talk to each other
+原始生成: 'A'
+标准答案: 'A'
+----------------------------------------
+
+==================================================
+模型: Qwen/Qwen2.5-3B-Instruct | 策略: FewShot
+任务: openbookqa
+生成完毕样本数: 2 | 用时: 22.61s
+--------------------------------------------------
+[样例 1]
+题目: There is most likely going to be fog around:
+选项: A: a marsh | B: a tundra | C: the plains | D: a desert
+原始生成: 'A'
+标准答案: 'A'
+----------------------------------------
+[样例 2]
+题目: The middle of the day usually involves the bright star nearest to the earth to be straight overhead why?
+选项: A: moons gravity | B: human planet rotation | C: global warming | D: moon rotation
+原始生成: 'B'
+标准答案: 'B'
+----------------------------------------
+
+==================================================
+模型: Qwen/Qwen2.5-3B-Instruct | 策略: FewShot
+任务: piqa
+生成完毕样本数: 2 | 用时: 25.04s
+--------------------------------------------------
+[样例 1]
+题目: How do I ready a guinea pig cage for it's new occupants?
+选项: A: Provide the guinea pig with a cage full of a few inches of bedding made of ripped paper strips, you will also need to supply it with a water bottle and a food dish. | B: Provide the guinea pig with a cage full of a few inches of bedding made of ripped jeans material, you will also need to supply it with a water bottle and a food dish.
+原始生成: 'A'
+标准答案: 'A'
+----------------------------------------
+[样例 2]
+题目: Remove soap scum from shower door.
+选项: A: Rub hard with bed sheets, then rinse. | B: Rub hard with dryer sheets, then rinse.
+原始生成: 'B'
+标准答案: 'B'
+----------------------------------------
+
+==================================================
+模型: deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B | 策略: FewShot
+任务: commonsenseqa
+生成完毕样本数: 2 | 用时: 70.93s
+--------------------------------------------------
+[样例 1]
+题目: A revolving door is convenient for two direction travel, but it also serves as a security measure at a what?
+选项: A: bank | B: library | C: department store | D: mall | E: new york
+原始生成: 'Okay, so I have this question about why a revolving door can be used both ways—like going around in circles—and still act as a security feature. The options are from A to E, with D being "mall." Hmm, let me think through this step by step.
+
+First, I know that a revolving door typically has people walking past them while others rotate underneath or above. This setup allows access without needing to enter directly because everyone moves together. Now, if someone wants to go back after leaving, they just walk away instead of letting anyone catch up behind them. That's how it works—it’s efficient and secure because no one needs to come out; only those who want to leave do so manually.
+
+Now, considering the purpose of such doors, they're commonly found near banks where customers need to make withdrawals quickly. People line up outside the counter, then when asked to withdraw money, they all move into an area (the revolving part) under the cash register. Once done, they exit normally. So, using a revolving door here would allow people to get their money out easily once they've deposited it elsewhere.
+
+Looking at the options again:
+- Bank (Option A): Makes sense since it's common there.
+- Library (Option B): Not sure, maybe less likely unless specifically designed.
+- Department Store (Option C): Maybe, depending on location, but probably more associated with retail areas like stores rather than banking.
+- Mall (Option D): Again, perhaps related to shopping centers, which might include similar features.
+- New York (Option E): Unlikely, as revolving doors aren't specific to any city.
+
+Between A and D, both seem plausible. But the most direct association with a revolving door is either a bank or a mall. However, given the structure of the question asking about its function beyond mere convenience, a bank seems more fitting because it's a place where transactions happen frequently, requiring quick access. On the other hand, malls often have various facilities too, including some forms of automated entry systems, though not necessarily revolving doors per se.
+
+Wait, actually, the question specifies that the door is used for two directions—so it must serve as a way to bypass movement entirely. Banks are known for having such mechanisms due to high transaction volumes. While malls sometimes have escalators or automatic gates, the term 'revolving door' suggests something that continues moving even after exiting, implying a physical barrier isn't needed anymore. 
+
+So, putting it all together, Option A (Bank) fits better because it's a well-known example of a revolving door system used for accessing accounts efficiently and securely.
+</think>
+
+The correct answer is **A: Bank**.'
+标准答案: 'A'
+----------------------------------------
+[样例 2]
+题目: What do people aim to do at work?
+选项: A: complete job | B: learn from each other | C: kill animals | D: wear hats | E: talk to each other
+原始生成: 'Okay, so I need to figure out what people in an office typically aim to do when working together. Let me think about this step by step.
+
+First, "work" generally means engaging in activities that help achieve goals or tasks. So, if someone says they're aiming to do something related to their role, it's likely about contributing positively within the group.
+
+Looking at the options:
+- Option A suggests completing jobs, which doesn't sound right because everyone can contribute differently without necessarily doing everything themselves.
+- Option B talks about learning from each other. That makes sense; communication and collaboration are key parts of teamwork.
+- Options C and D seem unrelated since we don't usually kill animals or wear hats while working unless there's a specific context mentioned here.
+- Option E mentions talking to each other, but again, that seems more like social interaction rather than a primary goal during work time.
+
+So putting it all together, the most logical choice would be B) Learn from each other.
+</think>
+
+The correct answer is **B**.'
+标准答案: 'A'
+----------------------------------------
+
+==================================================
+模型: deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B | 策略: FewShot
+任务: openbookqa
+生成完毕样本数: 2 | 用时: 115.02s
+--------------------------------------------------
+[样例 1]
+题目: There is most likely going to be fog around:
+选项: A: a marsh | B: a tundra | C: the plains | D: a desert
+原始生成: 'Okay, so I need to figure out where fog is most likely to occur among the given options. Let me think about this step by step.
+
+First, what do I know about fog? Fog forms when water droplets condense into tiny liquid drops in the air due to low humidity or temperature fluctuations. It's often seen as mist but with more visible particles because they're smaller than typical mist droplets.
+
+Now looking at the options:
+
+- **Option A: a marsh** - Marshes have lots of trees and plants that can absorb moisture, which would lower humidity levels. So it's unlikely to form fog there since high humidity might prevent condensation from happening easily.
+
+- **Option B: a tundra** - Tundras are cold regions with very little vegetation. They lack plants and snow, meaning there's less chance for water vapor to condense into fog compared to other areas like deserts or forests.
+
+- **Option C: the plains** - Plains are flat open spaces without much vegetation. Water tends to evaporate quickly here, leading to higher temperatures and lower humidity. This makes it harder for fog to form because evaporation removes moisture too fast.
+
+- **Option D: a desert** - Deserts are known for their hot, dry environments. High heat causes water to freeze and precipitate instead of forming fog. Instead, rain falls directly onto the surface.
+
+So putting it all together, none of the options except maybe a place with both low humidity and enough plant life could support fog. But considering the options provided, the closest is probably a tundra (option B) because it has minimal vegetation, making it hard for fog to form despite having some atmospheric conditions favorable for cloud formation.
+</think>
+
+The correct answer is B: a tundra.'
+标准答案: 'A'
+----------------------------------------
+[样例 2]
+题目: The middle of the day usually involves the bright star nearest to the earth to be straight overhead why?
+选项: A: moons gravity | B: human planet rotation | C: global warming | D: moon rotation
+原始生成: 'Okay, so I need to figure out which answer corresponds correctly to the given question about why the middle of the day has a bright star near Earth that's directly up in the sky. Let me break this down step by step.
+
+First, understanding what happens at solar noon—the time when the sun is highest in the sky. At solar noon, the sunlight hits the surface most directly because it's neither morning nor evening; there's no cloud cover blocking much light yet. So, during this period, we see the brightest stars because they're aligned with our position relative to the sun.
+
+Now looking at the options:
+
+- Option A says "moons' gravity." That doesn't make sense. Moons orbit their parent planets but don't have significant gravitational influence here unless considering tides or something, which isn't relevant to why stars align vertically.
+
+- Option B suggests "human planet rotation." While humans do rotate around the Earth once every 24 hours (a sidereal day), does that cause stars to appear vertical? No, because even though the Earth spins, the stars aren't affected by its own rotation—it's more about orbital motion affecting how we observe them from different points.
+
+- Option C claims "global warming." Global warming affects weather patterns and climate changes overall, like making days longer or shorter depending on location, but it wouldn't specifically cause stars to rise straight up as seen from Earth.
+
+- Option D states "moon rotation." Like with the moon itself, if the moon were rotating faster, perhaps some alignment could happen differently, but again, the primary reason remains due to the sun being above us.
+
+So putting it all together, the correct explanation must relate to the sun's position rather than external forces like the moon's rotation or human movement. Therefore, none of the answers seem entirely accurate except maybe if I'm missing something. Wait, actually, another thought—maybe the moon's gravity plays into tidal effects causing certain alignments over time, but that seems too indirect compared to just relying on the sun's position.
+
+Wait, hold on! Maybe I was wrong earlier. If someone observes the same point where the sun is highest, the stars would naturally align vertically regardless of other factors. But then why mention the moon's gravity?
+
+Alternatively, perhaps the intended answer refers to the moon's natural pull influencing the apparent positions through tidal interactions, especially during high tide events. However, without specific context, such explanations might complicate things beyond necessity.
+
+Given the options provided, the closest fit is likely referring to the sun's position, meaning the correct choice among the four is either A, B, C, or D. Since none perfectly match my initial reasoning, perhaps the intended answer is related to the moon's gravity indirectly, but since that's an astronomical effect unrelated to human observation, it's less likely.
+
+But wait, let me think again. When observing solar noon, the angle between the horizon and the zenith determines whether a star appears higher or lower. The brightness depends on the altitude, while the direction relies on the sun's elevation. The moon's gravity can affect tides, but it doesn't change the fact that the sun rises highest at solar noon.
+
+Hmm... Perhaps the intended answer is C) global warming, but I feel uncertain now. Alternatively, maybe the user made a mistake in providing the options. In any case, sticking strictly to the information needed, the correct answer is probably related to the sun rising highest, hence the moon's gravity may play a role via tidal effects, but that's speculative.
+
+After reconsidering, I realize that the direct cause is the sun's position, so the only possible correct answer within the choices is possibly none, but since the options include A, B, etc., I'll go back to the original logic.
+
+The key factor is the sun's position, so the correct answer is the one that relates to the sun's altitude changing throughout the day. None of the options explicitly state this, but perhaps the intended answer is C) global warming, assuming it's referencing tidal effects caused by the moon's gravity. Or maybe the intended answer is A) moons gravity, implying that the moon's gravity causes the stars to align vertically at solar noon.
+
+I'm torn here. Without clear knowledge, I'll lean towards the moon's gravity having an impact, thus choosing C.
+</think>
+
+ANSWER: C'
+标准答案: 'B'
+----------------------------------------
+
+==================================================
+模型: deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B | 策略: FewShot
+任务: piqa
+生成完毕样本数: 2 | 用时: 60.58s
+--------------------------------------------------
+[样例 1]
+题目: How do I ready a guinea pig cage for it's new occupants?
+选项: A: Provide the guinea pig with a cage full of a few inches of bedding made of ripped paper strips, you will also need to supply it with a water bottle and a food dish. | B: Provide the guinea pig with a cage full of a few inches of bedding made of ripped jeans material, you will also need to supply it with a water bottle and a food dish.
+原始生成: 'Okay, so I'm trying to figure out which answer correctly describes how to prepare a guinea pig cage for its new owner. The question gives two options labeled A and B. 
+
+First, let me think about what's important when setting up a guinea pig cage. It needs enough space but shouldn't be too cramped because they're small pets. So, providing them with some bedding that isn't too thick or heavy would help spread their movement around without making them feel restricted. Ripped paper strips might work as a soft cover since they can absorb moisture quickly, keeping the environment comfortable.
+
+Looking at Option A, it mentions rippled paper strips, ripped jeans material, etc., all made from something that could provide comfort and air circulation. That makes sense because ripped materials like paper or jeans have lots of texture and can trap heat effectively in a warm room, preventing overheating. They’re also easier to clean than fabric covers, saving time and effort.
+
+Option B uses ripped jeans again, but maybe there’s more nuance here? Wait, no—the wording seems similar. Both options mention ripped materials, so perhaps both are correct. But looking back, the user provided only this part:
+
+"Provide the guinea pig with a cage full of a few inches of bedding made of ripped paper strips, you will also need to supply it with a water bottle and a food dish."
+
+So actually, Option A includes "ripped paper strips," while Option B doesn’t specify the type—just ripped jeans. Since ripped paper is softer and provides better insulation compared to ripped jeans (which might be finer), using ripped paper strips sounds more appropriate. Therefore, Option A is likely the right choice.
+</think>
+
+The correct preparation involves Ripped Paper Strips for warmth and comfort. Thus, Answer: A'
+标准答案: 'A'
+----------------------------------------
+[样例 2]
+题目: Remove soap scum from shower door.
+选项: A: Rub hard with bed sheets, then rinse. | B: Rub hard with dryer sheets, then rinse.
+原始生成: 'Okay, so I need to figure out which method is correct for removing soap scum from a shower door. The options given are A) Rub hard with bed sheets, then rinse; or B) Rub hard with dryer sheets, then rinse.
+
+First, I remember that soap scum forms when soap gets stuck in the holes left by water after washing. To remove it effectively, you want something soft but strong enough to clean without damaging the material. Bed sheets might be too thick because they're made of cotton, which can absorb liquid easily. On the other hand, dryer sheets are finer and softer, allowing them to wash away the soap while still being able to trap any remaining dirt or impurities.
+
+So if someone rubs the sheet gently against the door, using the right amount of force would help. Then rinsing afterward makes sense as it removes both the soap and any residue. Comparatively, using bed sheets first could leave more soap behind since they don't allow thorough cleaning. Therefore, option A seems better than B.
+</think>
+
+The correct approach is to use dryer sheets (option A), as they provide a gentler scrubbing effect before rinsing, ensuring effective removal of soap scum along with any residual dirt. 
+
+Answer: A'
+标准答案: 'B'
+----------------------------------------
+
+==================================================
+模型: Qwen/Qwen3-4B-Instruct-2507 | 策略: FewShot
+任务: commonsenseqa
+生成完毕样本数: 2 | 用时: 48.83s
+--------------------------------------------------
+[样例 1]
+题目: A revolving door is convenient for two direction travel, but it also serves as a security measure at a what?
+选项: A: bank | B: library | C: department store | D: mall | E: new york
+原始生成: 'A'
+标准答案: 'A'
+----------------------------------------
+[样例 2]
+题目: What do people aim to do at work?
+选项: A: complete job | B: learn from each other | C: kill animals | D: wear hats | E: talk to each other
+原始生成: 'A'
+标准答案: 'A'
+----------------------------------------
+
+==================================================
+模型: Qwen/Qwen3-4B-Instruct-2507 | 策略: FewShot
+任务: openbookqa
+生成完毕样本数: 2 | 用时: 26.35s
+--------------------------------------------------
+[样例 1]
+题目: There is most likely going to be fog around:
+选项: A: a marsh | B: a tundra | C: the plains | D: a desert
+原始生成: 'A'
+标准答案: 'A'
+----------------------------------------
+[样例 2]
+题目: The middle of the day usually involves the bright star nearest to the earth to be straight overhead why?
+选项: A: moons gravity | B: human planet rotation | C: global warming | D: moon rotation
+原始生成: 'B'
+标准答案: 'B'
+----------------------------------------
+
+==================================================
+模型: Qwen/Qwen3-4B-Instruct-2507 | 策略: FewShot
+任务: piqa
+生成完毕样本数: 2 | 用时: 29.35s
+--------------------------------------------------
+[样例 1]
+题目: How do I ready a guinea pig cage for it's new occupants?
+选项: A: Provide the guinea pig with a cage full of a few inches of bedding made of ripped paper strips, you will also need to supply it with a water bottle and a food dish. | B: Provide the guinea pig with a cage full of a few inches of bedding made of ripped jeans material, you will also need to supply it with a water bottle and a food dish.
+原始生成: 'A'
+标准答案: 'A'
+----------------------------------------
+[样例 2]
+题目: Remove soap scum from shower door.
+选项: A: Rub hard with bed sheets, then rinse. | B: Rub hard with dryer sheets, then rinse.
+原始生成: 'B'
+标准答案: 'B'
+----------------------------------------

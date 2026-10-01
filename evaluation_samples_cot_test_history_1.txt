@@ -1,0 +1,254 @@
+==================================================
+      大语言模型 BenchMark 评估记录 (CoT)      
+==================================================
+
+
+==================================================
+模型: TinyLlama/TinyLlama_v1.1 | 策略: CoT
+任务: commonsenseqa
+准确率: 100.00% (2/2) | 用时: 27.57s
+--------------------------------------------------
+[样例 1] [正确]
+题目: A revolving door is convenient for two direction travel, but it also serves as a security measure at a what?
+原始生成: '1. A revolving door is convenient for two direction travel, but it also serves as a security measure at a what?
+2. A revolving door is convenient for two direction travel, but it also serves as a security measure at a what?
+3. A revolving door is convenient for two direction travel, but it also serves as a security measure at a what?
+4. A revolving door is convenient for two direction travel, but it also serves as a security measure at a what?
+5. A revolving door is convenient for two direction travel, but it also serves as a security measure at a what?
+6. A revolving door is convenient for two direction travel, but it also serves as a security measure at a what?
+7. A revolving door is convenient for two direction travel, but it also serves as a security measure at a what?
+8. A revolving door is convenient for two direction travel, but it also serves as'
+预测答案: 'A' | 标准答案: 'A'
+----------------------------------------
+[样例 2] [正确]
+题目: What do people aim to do at work?
+原始生成: 'A: complete job
+B: learn from each other
+C: kill animals
+D: wear hats
+E: talk to each other
+A: complete job
+B: learn from each other
+C: kill animals
+D: wear hats
+E: talk to each other
+A: complete job
+B: learn from each other
+C: kill animals
+D: wear hats
+E: talk to each other
+A: complete job
+B: learn from each other
+C: kill animals
+D: wear hats
+E: talk to each other
+A: complete job
+B: learn from each other
+C: kill animals
+D: wear hats
+E: talk to each other
+A: complete job
+B: learn from each other
+C: kill animals
+D: wear hats
+E: talk to each other
+A: complete job
+B: learn from each other
+C: kill animals
+D: wear'
+预测答案: 'A' | 标准答案: 'A'
+----------------------------------------
+
+==================================================
+模型: TinyLlama/TinyLlama_v1.1 | 策略: CoT
+任务: openbookqa
+准确率: 50.00% (1/2) | 用时: 27.27s
+--------------------------------------------------
+[样例 1] [正确]
+题目: There is most likely going to be fog around:
+原始生成: 'A: a marsh
+B: a tundra
+C: the plains
+D: a desert
+A: a marsh.
+B: a tundra.
+C: the plains.
+D: a desert.
+A: a marsh.
+B: a tundra.
+C: the plains.
+D: a desert.
+A: a marsh.
+B: a tundra.
+C: the plains.
+D: a desert.
+A: a marsh.
+B: a tundra.
+C: the plains.
+D: a desert.
+A: a marsh.
+B: a tundra.
+C: the plains.
+D: a desert.
+A: a marsh.
+B: a tundra.
+C: the plains.
+D: a desert.
+A: a marsh.
+B'
+预测答案: 'A' | 标准答案: 'A'
+----------------------------------------
+[样例 2] [错误]
+题目: The middle of the day usually involves the bright star nearest to the earth to be straight overhead why?
+原始生成: 'Option A: The moon's gravity is the same as the earth's gravity.
+Option B: The moon's rotation is the same as the earth's rotation.
+Option C: The moon's rotation is the same as the earth's rotation.
+Option D: The moon's rotation is the same as the earth's rotation.
+Option A: The moon's gravity is the same as the earth's gravity.
+Option B: The moon's rotation is the same as the earth's rotation.
+Option C: The moon's rotation is the same as the earth's rotation.
+Option D: The moon's rotation is the same as the earth's rotation.
+Option A: The moon's gravity is the same as the earth's gravity.
+Option B: The moon's rotation is the same as the earth's rotation.
+Option C: The moon's rotation is the'
+预测答案: 'A' | 标准答案: 'B'
+----------------------------------------
+
+==================================================
+模型: TinyLlama/TinyLlama_v1.1 | 策略: CoT
+任务: piqa
+准确率: 100.00% (2/2) | 用时: 32.91s
+--------------------------------------------------
+[样例 1] [正确]
+题目: How do I ready a guinea pig cage for it's new occupants?
+原始生成: 'A: Provide the guinea pig with a cage full of a few inches of bedding made of ripped jeans material, you will also need to supply it with a water bottle and a food dish.
+B: Provide the guinea pig with a cage full of a few inches of bedding made of ripped jeans material, you will also need to supply it with a water bottle and a food dish.
+C: Provide the guinea pig with a cage full of a few inches of bedding made of ripped jeans material, you will also need to supply it with a water bottle and a food dish.
+D: Provide the guinea pig with a cage full of a few inches of bedding made of ripped jeans material, you will also need to supply it with a water bottle and a food dish.
+A: Provide the guinea p'
+预测答案: 'A' | 标准答案: 'A'
+----------------------------------------
+[样例 2] [正确]
+题目: Remove soap scum from shower door.
+原始生成: 'A: Rub hard with bed sheets, then rinse.
+B: Rub hard with dryer sheets, then rinse.
+C: Rub hard with soap scum from shower door, then rinse.
+D: Rub hard with soap scum from shower door, then rinse.
+Final Answer: A
+A: Rub hard with bed sheets, then rinse.
+B: Rub hard with dryer sheets, then rinse.
+C: Rub hard with soap scum from shower door, then rinse.
+D: Rub hard with soap scum from shower door, then rinse.
+Final Answer: B
+A: Rub hard with bed sheets, then rinse.
+B: Rub hard with dryer sheets, then rinse.
+C: Rub hard with soap scum from shower door, then rinse.
+D: Rub hard with soap scum from shower door, then rinse.
+Final'
+预测答案: 'B' | 标准答案: 'B'
+----------------------------------------
+
+==================================================
+模型: Qwen/Qwen2.5-3B-Instruct | 策略: CoT
+任务: commonsenseqa
+准确率: 100.00% (2/2) | 用时: 71.85s
+--------------------------------------------------
+[样例 1] [正确]
+题目: A revolving door is convenient for two direction travel, but it also serves as a security measure at a what?
+原始生成: 'Let's analyze each option step by step:
+
+A: bank - While banks do use revolving doors, they are primarily used for security reasons. However, the convenience of two-way travel is not their main purpose.
+
+B: library - Libraries typically have single-direction entry and exit points to control access and prevent unauthorized entry. Revolving doors are not commonly found in libraries.
+
+C: department store - Department stores often use revolving doors for both security and convenience. They can be locked from the inside during certain hours to prevent theft, while still allowing customers to enter and exit freely.
+
+D: mall - Similar to department stores, malls use revolving doors for both security and convenience. They can be locked from the inside to prevent shoplifting, while still allowing shoppers to move freely through the mall.
+
+E: new york - This is too broad and doesn't specify a particular type of establishment. New York could refer to any number of locations, so we cannot determine if revolving doors are used there.
+
+Given this analysis,'
+预测答案: 'A' | 标准答案: 'A'
+----------------------------------------
+[样例 2] [正确]
+题目: What do people aim to do at work?
+原始生成: 'Let's analyze each option step by step:
+
+A: complete job
+- This is a common goal for many people at work. People often aim to finish their assigned tasks or projects within the given timeframe.
+
+B: learn from each other
+- While learning can be a part of work, it is not typically the primary goal for most jobs. The main focus is usually on completing tasks rather than acquiring new knowledge.
+
+C: kill animals
+- This is an illegal and unethical activity that has no place in the workplace. It is not a goal that people aim to achieve at work.
+
+D: wear hats
+- Wearing hats is a personal choice and not something that is generally aimed for as a collective goal in the workplace. It may happen occasionally but is not a primary objective.
+
+E: talk to each other
+- Communication is important in the workplace, but talking to each other is not a specific goal that people aim to achieve. It is more of a means to an end.
+
+After evaluating'
+预测答案: 'A' | 标准答案: 'A'
+----------------------------------------
+
+==================================================
+模型: Qwen/Qwen2.5-3B-Instruct | 策略: CoT
+任务: openbookqa
+准确率: 50.00% (1/2) | 用时: 69.75s
+--------------------------------------------------
+[样例 1] [正确]
+题目: There is most likely going to be fog around:
+原始生成: 'To determine where there is most likely to be fog, we need to consider the conditions that typically lead to fog formation. Fog forms when warm, moist air moves over a cooler surface, causing the air to cool and reach its dew point, leading to condensation of water vapor into liquid water droplets.
+
+Let's analyze each option:
+
+A: A marsh - Marshes are areas of wetland vegetation, often characterized by standing water or very wet soil. They can have high humidity due to the presence of water and organic matter, which can lead to fog formation. This is a plausible location for fog.
+
+B: A tundra - Tundras are cold, treeless regions found in polar regions. They are characterized by low temperatures and little precipitation, making it unlikely for fog to form. This is not a likely location for fog.
+
+C: The plains - Plains are generally flat, open areas that can vary widely in terms of climate. While they can experience fog under certain conditions (like coastal'
+预测答案: 'A' | 标准答案: 'A'
+----------------------------------------
+[样例 2] [错误]
+题目: The middle of the day usually involves the bright star nearest to the earth to be straight overhead why?
+原始生成: 'To determine the correct answer, we need to understand why the brightest star in the sky appears directly overhead at midday. Let's analyze each option:
+
+A: Moons gravity - The moon's gravity does not significantly affect the position of stars in the sky. It primarily influences tides on Earth but has no effect on the apparent positions of celestial objects.
+
+B: Human planet rotation - This is the key factor here. The Earth rotates on its axis from west to east, completing one full rotation approximately every 24 hours. As a result, different parts of the Earth face the sun at different times during the day. At midday, when the sun is highest in the sky, the Earth's rotation aligns the observer's location with the direction of the sun. However, the question asks about the brightest star, not the sun.
+
+C: Global warming - Global warming is a phenomenon related to climate change and does not influence the position of stars in the sky. It affects temperatures and weather'
+预测答案: 'A' | 标准答案: 'B'
+----------------------------------------
+
+==================================================
+模型: Qwen/Qwen2.5-3B-Instruct | 策略: CoT
+任务: piqa
+准确率: 50.00% (1/2) | 用时: 106.09s
+--------------------------------------------------
+[样例 1] [正确]
+题目: How do I ready a guinea pig cage for it's new occupants?
+原始生成: 'Option A suggests using ripped paper strips as bedding for the guinea pig's cage. Guinea pigs are known to have sensitive digestive systems and can be allergic to certain materials. Ripped paper strips are generally safe and absorbent, making them an appropriate choice for bedding. Additionally, providing a water bottle and a food dish are standard requirements for any pet's cage.
+
+Option B suggests using ripped jeans material as bedding. This is not a suitable choice because jeans are not absorbent and can cause health issues for guinea pigs due to their potential to harbor bacteria and other harmful microorganisms. Furthermore, the texture of jeans could potentially harm the guinea pig's skin.
+
+Given this reasoning, Option A is the correct choice for preparing a guinea pig's cage.
+Final Answer: A'
+预测答案: 'A' | 标准答案: 'A'
+----------------------------------------
+[样例 2] [错误]
+题目: Remove soap scum from shower door.
+原始生成: 'To determine the best method for removing soap scum from a shower door, we need to consider the nature of soap scum and the effectiveness of the materials mentioned.
+
+1. Soap scum is primarily composed of calcium carbonate, which can be quite stubborn and difficult to remove without proper cleaning agents.
+2. Bed sheets are typically made of cotton or synthetic fibers and do not contain any cleaning agents that would help dissolve or break down soap scum.
+3. Dryer sheets are designed to soften fabrics and eliminate static electricity in clothes. They do not have any cleaning properties that would be effective against soap scum.
+4. Both options involve rubbing the shower door, but neither provides any cleaning agent that could effectively tackle the soap scum.
+
+Given this analysis, neither option A nor B will effectively remove soap scum from the shower door. Therefore, neither option is suitable for the task at hand.
+
+Final Answer: D'
+预测答案: 'D' | 标准答案: 'B'
+----------------------------------------
