@@ -5,99 +5,100 @@ import re
 
 
 def extract_answer(decoded_text: str) -> str:
-    if not decoded_text:
-        return ""
-
-    text = decoded_text.strip()
-
-    # 1. 防御：针对 DeepSeek-R1 等 Reasoning 模型，拦截思考未完成的截断样本
-    if "<think>" in text and "</think>" not in text:
-        return ""
-    if "</think>" in text:
-        text = text.split("</think>")[-1].strip()
-
-    # 2. 拦截多轮对话续写/自我伪造
-    for stop_word in ["\nHuman:", "\nAssistant:", "\nQuestion:", "Given the following"]:
-        if stop_word in text:
-            text = text.split(stop_word)[0].strip()
-
-    # 【新增优化 1】直接匹配被 Markdown 粗体包裹或带点号的开头：如 "**A.**", "A.", "**A**"
-    # 清理掉开头的 Markdown 符号
-    clean_text = re.sub(r'[\*\_\`]', '', text).strip()
-
-    # 匹配开头紧跟的选项 (如 "A.", "A)", "(A)", 甚至独立的字母)
-    head_match = re.match(r'^(?:[A-E])(?:\.|\)|\b)', clean_text, re.IGNORECASE)
-    if head_match:
-        # 提取第一个字母
-        return clean_text[0].upper()
-
-    # 【优先级 2】标准结构化前缀：如 "Answer: A", "Option: (C)", "Choice = B"
-    match = re.search(r"(?:Answer|Option|Choice)\s*(?:is|:|\=)?\s*\*?\(?([A-E])\)?\*?", text, re.IGNORECASE)
-    if match:
-        return match.group(1).upper()
-
-    # 【优先级 3】直接回答/开门见山：检查前 20 个字符（放宽对标点和空格的限制）
-    head_text = text[:30].strip()
-    head_match = re.search(r"^(?:[0-9]+[\.\s]*)?\*?\(?([A-E])\)?\*?[\.\s\:\,]*", head_text, re.IGNORECASE)
-    if head_match:
-        return head_match.group(1).upper()
-
-    # 【优先级 4】尾部结论词
-    tail_text = text[-60:]
-    tail_match = re.search(r"(?:is|choose|select)\s*\*?\(?([A-E])\)?\*?", tail_text, re.IGNORECASE)
-    if tail_match:
-        return tail_match.group(1).upper()
-
+  if not decoded_text:
     return ""
 
+  text = decoded_text.strip()
 
-def extract_answer_cot(raw_output: str) -> str:
-    if not raw_output:
-        return ""
+  # 优先检查全文最开头（防止模型把答案写在最前面）
+  raw_head = text[:10].strip()
+  pure_head_match = re.match(r"^([A-E])(?:\.|\b)", raw_head, re.IGNORECASE)
+  if pure_head_match:
+    return pure_head_match.group(1).upper()
 
-    text = raw_output.strip()
-
-    # 1. 拦截 DeepSeek-R1 思考截断
-    if "<think>" in text and "</think>" not in text:
-        return ""
-    if "</think>" in text:
-        text = text.split("</think>")[-1].strip()
-
-    # 2. 拦截多轮对话/自我续写
-    for stop_word in ["\nHuman:", "\nAssistant:", "\nQuestion:", "Given the following"]:
-        if stop_word in text:
-            text = text.split(stop_word)[0].strip()
-
-    # 3. 严格结构化锚定（支持被 ** 粗体包裹的选项，如 **A** 或 **A.**）
-    strict_patterns = [
-        r"Final\s*(?:Answer|Choice|Option)\s*[:=]?\s*\*?\(?([A-E])\)?\*?",
-        r"(?:The\s*)?(?:correct|final)\s*(?:answer|option|choice)\s*(?:is|:|=)\s*\*?\(?([A-E])\)?\*?",
-        r"Answer\s*[:=]\s*\*?\(?([A-E])\)?\*?",
-        # 兼容单独成行或带有 Markdown 粗体的格式，如 **A.** 或 **C**
-        r"\n\s*\*?\s*([A-E])(?:\.|\))\s*\**",
-    ]
-
-    for pattern in strict_patterns:
-        matches = re.findall(pattern, text, re.IGNORECASE)
-        if matches:
-            return matches[-1].upper()
-
-    # 4. 尾部推导词锚定（如 "so the answer is c" 或结尾直接给字母）
-    tail_text = text[-100:]
-    tail_match = re.search(
-        r"(?:so|therefore|thus|hence|choose|select)\s*(?:option|choice)?\s*\*?\(?([A-E])\)?\*?",
-        tail_text,
-        re.IGNORECASE,
-    )
-    if tail_match:
-        return tail_match.group(1).upper()
-
-    # 5. 保底：如果整个文本的最后有效字符是一个孤立的字母（如回答只有 "c" 或 "**c**"）
-    cleaned_tail = re.sub(r'[\*\_\`\.\s]', '', text[-10:])
-    if cleaned_tail and cleaned_tail[-1].upper() in ['A', 'B', 'C', 'D', 'E']:
-        return cleaned_tail[-1].upper()
-
+  # 1. 防御：针对 DeepSeek-R1 等 Reasoning 模型，拦截思考未完成的截断样本
+  if "<think>" in text and "</think>" not in text:
     return ""
+  if "</think>" in text:
+    text = text.split("</think>")[-1].strip()
+
+  # 2. 拦截多轮对话续写/自我伪造
+  for stop_word in [
+      "\nHuman:",
+      "\nAssistant:",
+      "\nQuestion:",
+      "Given the following",
+  ]:
+    if stop_word in text:
+      text = text.split(stop_word)[0].strip()
+
+  # 3. 匹配 LaTeX 格式的 Boxed 答案：如 \boxed{A} 或 $\boxed{A}$
+  boxed_match = re.search(
+      r"\\boxed\{\s*(?:\\text\{)?([A-E])(?:\})?\}", text, re.IGNORECASE
+  )
+  if boxed_match:
+    return boxed_match.group(1).upper()
+
+  # 【新增规则】专门匹配形如 "The correct answer is **C**." 或 "The best choice is **B**" 的独立加粗字母模式
+  isolated_bold_match = re.search(
+      r"(?:correct\s+answer\s+is|answer\s+is|choice\s+is|best\s+choice\s+is|best\s+answer\s+is)\b\s*\*\*([A-E])\*\*",
+      text,
+      re.IGNORECASE,
+  )
+  if isolated_bold_match:
+    return isolated_bold_match.group(1).upper()
+
+  # 4. 匹配长句带描述模式：如 "The correct answer is **C: none of these**" (兼容双星号)
+  inline_desc_match = re.search(
+      r"(?:correct\s+answer\s+is|answer\s+is|choice\s+is|best\s+choice\s+is|best\s+answer\s+is)\b\s*\*{0,2}\s*([A-E])\s*[:\)]",
+      text,
+      re.IGNORECASE,
+  )
+  if inline_desc_match:
+    return inline_desc_match.group(1).upper()
+
+  # 5. 匹配标准结构化前缀：如 "Answer: A", "Option: (C)", 兼容各种 Markdown 星号
+  match = re.search(
+      r"\*{0,2}(?:Answer|Option|Choice|Final Answer)\s*(?:is|:|\=)?\s*\*?\(?([A-E])\)?\*{0,2}",
+      text,
+      re.IGNORECASE,
+  )
+  if match:
+    return match.group(1).upper()
+
+  # 6. 匹配被加粗且带冒号的独立选项：如 "**C:**" 或 "**c -**"
+  bold_colon_match = re.search(
+      r"\*\*([A-E])\s*[:\-]\s*\*\*", text, re.IGNORECASE
+  )
+  if bold_colon_match:
+    return bold_colon_match.group(1).upper()
+
+  # 7. 匹配开头紧跟的选项 (如 "A.", "A)", "(A)")
+  head_match = re.match(r"^(?:[A-E])(?:\.|\)|\b)", text, re.IGNORECASE)
+  if head_match:
+    return text[0].upper()
+
+  # 8. 直接回答/开门见山：检查前 30 个字符
+  head_text = text[:30].strip()
+  head_match = re.search(
+      r"^(?:[0-9]+[\.\s]*)?\*?\(?([A-E])\)?\*?[\.\s\:\,]*",
+      head_text,
+      re.IGNORECASE,
+  )
+  if head_match:
+    return head_match.group(1).upper()
+
+  # 9. 尾部结论词：扩大检索范围到最后 100 个字符
+  tail_text = text[-100:]
+  tail_match = re.search(
+      r"(?:is|choose|select|answer)\s*\*?\(?([A-E])\)?\b",
+      tail_text,
+      re.IGNORECASE,
+  )
+  if tail_match:
+    return tail_match.group(1).upper()
+
+  return ""
 
 
 def calculate_summary_from_checkpoint(checkpoint_file="benchmark_checkpoint.json"):
@@ -134,11 +135,7 @@ def calculate_summary_from_checkpoint(checkpoint_file="benchmark_checkpoint.json
             if raw_output is not None:
                 completed_count += 1
 
-                # 根据策略类型选择对应的解析函数
-                if "cot" in strategy_name.lower():
-                    pred = extract_answer_cot(raw_output)
-                else:
-                    pred = extract_answer(raw_output)
+                pred = extract_answer(raw_output)
 
                 # 比对预测结果与标准答案
                 if pred and target and pred == target:
@@ -170,6 +167,86 @@ def calculate_summary_from_checkpoint(checkpoint_file="benchmark_checkpoint.json
     print("统计完成！")
 
 
+def analyze_mismatches(
+    checkpoint_file="benchmark_checkpoint_ds.json",
+    output_txt="analysis_result.txt",
+):
+  """检查 Checkpoint 文件，统计准确率并将错误样例及汇总写入到 TXT 文件中。
+
+  针对长思维链模型，提取失败时优先展示文本尾部结论。
+"""
+  if not os.path.exists(checkpoint_file):
+    print(f"未找到检查点文件: {checkpoint_file}")
+    return
+
+  with open(checkpoint_file, "r", encoding="utf-8") as f:
+    data = json.load(f)
+
+  with open(output_txt, "w", encoding="utf-8") as out_f:
+    for task_key, records in data.items():
+      header = f"\n==================== 分析任务: {task_key} ====================\n"
+      #print(header.strip())
+      out_f.write(header)
+
+      correct = 0
+      total = len(records)
+      extraction_fail = 0
+      model_wrong = 0
+
+      for idx_str, item in records.items():
+        answer_key = item.get("answerKey", "").strip().upper()
+        raw_text = item.get("raw", "")
+
+        pred = extract_answer(raw_text)
+
+        if not pred:
+          extraction_fail += 1
+          # 【修改点】由于大模型答案在结尾，这里改为打印【尾部 400 个字符】和【头部 150 个字符】
+          head_snippet = raw_text[:150]
+          tail_snippet = raw_text[-400:] if len(raw_text) > 400 else raw_text
+
+          msg = (
+              f"[提取失败] 样本ID: {idx_str}\n"
+              f"   问题: {item.get('question')}\n"
+              f"   标准答案: {answer_key}\n"
+              f"   Raw 文本【头部】: {repr(head_snippet)}\n"
+              f"   Raw 文本【尾部】: {repr(tail_snippet)}\n"
+              + "-" * 40
+              + "\n"
+          )
+          #print(msg.strip())
+          out_f.write(msg)
+
+        elif pred == answer_key:
+          correct += 1
+        else:
+          model_wrong += 1
+          tail_snippet = raw_text[-300:] if len(raw_text) > 300 else raw_text
+          msg = (
+              f"[模型答错] 样本ID: {idx_str} | 标准答案: {answer_key} |"
+              f" 模型预测: {pred}\n"
+              f"   问题: {item.get('question')}\n"
+              f"   Raw 文本【尾部结论】: {repr(tail_snippet)}\n"
+              + "-" * 40
+              + "\n"
+          )
+          #print(msg.strip())
+          out_f.write(msg)
+
+      acc_rate = (correct / total * 100) if total > 0 else 0.0
+      summary = (
+          f"\n--- 统计汇总 ---\n总题数: {total}\n正确数: {correct}"
+          f" (准确率: {acc_rate:.2f}%)\n正则提取失败数 (返回空):"
+          f" {extraction_fail}\n模型推理错误数: {model_wrong}\n"
+      )
+      #print(summary.strip())
+      out_f.write(summary)
+
+  print(f"\n[提示] 分析报告已成功保存至: {output_txt}")
+
+
 if __name__ == "__main__":
-    checkpoint_file="benchmark_checkpoint.json"
+    #checkpoint_file= "benchmark_checkpoint.json"
+    checkpoint_file = ("benchmark_checkpoint.json")
     calculate_summary_from_checkpoint(checkpoint_file)
+    analyze_mismatches("benchmark_checkpoint.json")

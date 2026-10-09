@@ -2,7 +2,7 @@ import json
 import os
 import sys
 
-CHECKPOINT_FILE = "benchmark_checkpoint.json"
+CHECKPOINT_FILE = "benchmark_checkpoint_bk261006.json"
 
 
 def load_checkpoint():

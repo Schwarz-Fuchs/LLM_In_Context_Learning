@@ -44,6 +44,9 @@ def check_checkpoint_health(file_path):
         return False
 
 
+
+
 if __name__ == "__main__":
     # 将这里的路径替换为你的 json 文件名
     check_checkpoint_health("benchmark_checkpoint.json")
+    #check_checkpoint_health("benchmark_checkpoint_bk261008_merge.json")

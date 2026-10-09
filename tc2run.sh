@@ -17,15 +17,15 @@
 
 ### Optional: Specify node to execute the job ###
 ### Remove 1st # at next line for the option to take effect ###
-##SBATCH --nodelist=TC2N01
+#SBATCH --nodelist=TC2N03
 
 ### Specify Time Limit, format: <min> or <min>:<sec> or <hr>:<min>:<sec> or <days>-<hr>:<min>:<sec> or <days>-<hr> ###
 #SBATCH --time=6:00:00
 
 ### Specify name for the job, filename format for output and error ###
-#SBATCH --job-name=fg_cyclegan
-#SBATCH --output=fg_cyclegan.out
-#SBATCH --error=fg_cyclegan.err
+#SBATCH --job-name=in_context
+#SBATCH --output=in_context.out
+#SBATCH --error=in_context.err
 
 ### Your script for computation ###
 module load anaconda

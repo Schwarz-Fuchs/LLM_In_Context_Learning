@@ -136,10 +136,10 @@ def infer_fewshot(sample, model, tokenizer, device):
         "Answer: A"
     )
 
-    deepseek_hint = "Please keep your thinking process extremely concise and brief.\n" if is_deepseek else ""
+    #deepseek_hint = "Please keep your thinking process extremely concise and brief.\n" if is_deepseek else ""
 
     user_message = (
-        f"{deepseek_hint}"
+        #f"{deepseek_hint}"
         "You are answering multiple-choice questions.\n"
         "For each question, choose the single best answer based on the question "
         "and the options.\n"
@@ -400,6 +400,7 @@ if __name__ == "__main__":
     FAST_TEST = False # 准备跑全量时，请务必设为 False
     NUM_SAMPLES_TO_SAVE = 2 if FAST_TEST else 20
     fast_sample=2
+    checkpoint_file="benchmark_checkpoint_ds.json"
     summary_txt_file = "summary_results.txt"
     ALL_STRATEGIES = {
         "Baseline": infer_baseline,
@@ -422,14 +423,16 @@ if __name__ == "__main__":
                 f.write(f"      大语言模型 BenchMark 评估记录 ({strategy})      \n")
                 f.write("==================================================\n\n")
 
-    target_tasks = ['commonsenseqa', 'openbookqa', 'piqa']
+    #target_tasks = ['commonsenseqa', 'openbookqa', 'piqa']
+    target_tasks = ['piqa']
 
     model_list = [
-        "TinyLlama/TinyLlama_v1.1",
-        "Qwen/Qwen2.5-3B-Instruct",
-        "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B",
-        "Qwen/Qwen3-4B-Instruct-2507"
+        #"TinyLlama/TinyLlama_v1.1",
+        #"Qwen/Qwen2.5-3B-Instruct",
+        #"Qwen/Qwen3-4B-Instruct-2507",
+        "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
     ]
+
     eval_set = datasets.load_dataset("Open-Style/Open-LLM-Benchmark", "questions")
     grouped_datasets = {}
     for example in eval_set['train']:
@@ -438,7 +441,7 @@ if __name__ == "__main__":
             grouped_datasets[dataset_key] = []
         grouped_datasets[dataset_key].append(example)
 
-    final_summary = {strategy: {m: {} for m in model_list} for strategy in methods_to_run}
+    #final_summary = {strategy: {m: {} for m in model_list} for strategy in methods_to_run}
 
     # 模型主循环
     for model_name in model_list:
@@ -473,9 +476,9 @@ if __name__ == "__main__":
                     acc = evaluate_samples_with_checkpoint(
                         test_samples, model, tokenizer, device,
                         model_name, task_name, txt_file, infer_func,
-                        strategy_name, NUM_SAMPLES_TO_SAVE
+                        strategy_name, NUM_SAMPLES_TO_SAVE,checkpoint_file
                     )
-                    final_summary[strategy_name][model_name][task_name] = acc
+                    #final_summary[strategy_name][model_name][task_name] = acc
             else:
                 print(f"警告: 数据集中没有找到 {task_name}")
 
