@@ -30,15 +30,7 @@
 在运行项目前，请确保安装了以下 Python 依赖库：
 
 ```bash
-pip install torch transformers datasets pandas
 ```
-vllm 在 tc2 上测试的版本
-```bash
-pip install torch==2.2.2 torchvision==0.17.2 torchaudio==2.2.2 --index-url https://download.pytorch.org/whl/cu121
-pip install vllm
-pip install transformers datasets pandas
-```
-
 
 --
 ##  快速使用指南
