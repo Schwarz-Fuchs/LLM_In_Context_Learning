@@ -141,9 +141,9 @@ def infer_fewshot(sample, model, tokenizer, device):
     user_message = (
         #f"{deepseek_hint}"
         "You are answering multiple-choice questions.\n"
-        "For each question, choose the single best answer based on the question "
+        "Choose the single best answer based on the question and the options "
         "and the options.\n"
-        "Return exactly one option label and nothing else. Do not explain.\n\n"
+        "Return exactly one option label and nothing else. Do not explain your answer.\n\n"
         f"{fewshot_examples}\n"
         f"For the next question, choose exactly one of these labels: {labels_text}.\n"
         f"Question: {question}\n"
