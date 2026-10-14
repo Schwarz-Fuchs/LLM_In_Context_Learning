@@ -2,7 +2,7 @@ import json
 import os
 import pandas as pd
 import re
-
+from collections import Counter
 
 def extract_answer(decoded_text: str) -> str:
   if not decoded_text:
@@ -166,6 +166,100 @@ def calculate_summary_from_checkpoint(checkpoint_file="benchmark_checkpoint.json
     print("\n" + "=" * 60)
     print("统计完成！")
 
+def calculate_summary_from_checkpoint_neo(
+            checkpoint_file="benchmark_checkpoint.json",
+    ):
+        if not os.path.exists(checkpoint_file):
+            print(
+                f"错误: 找不到断点文件 {checkpoint_file}，请确认文件名或路径是否正确。"
+            )
+            return None
+
+        # 1. 加载断点数据
+        with open(checkpoint_file, "r", encoding="utf-8") as f:
+            checkpoint_data = json.load(f)
+
+        print("\n" + "=" * 70)
+        print("       从断点 JSON 文件中离线统计的准确率与格式遵循率汇总报告       ")
+        print("=" * 70)
+
+        table_rows = []
+
+        # 2. 遍历 checkpoint 中的每个任务组合 (格式: model_name__strategy_name__task_name)
+        for task_key, records in checkpoint_data.items():
+            parts = task_key.split("__")
+            if len(parts) != 3:
+                continue
+            model_name, strategy_name, task_name = parts
+
+            total = len(records)
+            completed_count = 0
+            extracted_count = 0  # 【新增】成功通过正则提取出有效选项 (A-E) 的计数
+            correct = 0  # 预测正确且解析成功的计数
+
+            # 3. 遍历该任务下的每一个样本
+            for idx_str, res in records.items():
+                raw_output = res.get("raw", "")
+                target = res.get("answerKey", "")
+
+                if raw_output is not None:
+                    completed_count += 1
+
+                    pred = extract_answer(raw_output)
+
+                    # 【新增】统计成功提取出合法选项的数量（格式遵循率）
+                    if pred:
+                        extracted_count += 1
+                        # 比对预测结果与标准答案
+                        if target and pred == target:
+                            correct += 1
+
+            # 计算指标
+            accuracy = (correct / completed_count) * 100 if completed_count > 0 else 0
+            extraction_rate = (
+                (extracted_count / completed_count) * 100
+                if completed_count > 0
+                else 0
+            )
+
+            # 收集表格行数据（新增 Extraction Rate 和明细计数）
+            table_rows.append({
+                "Model": model_name.split("/")[-1],  # 简写模型名，保持表格清爽
+                "Strategy": strategy_name,
+                "Task": task_name,
+                "Accuracy (%)": f"{accuracy:.2f}%",
+                "Extraction Rate (%)": (  # 【新增指标列】
+                    f"{extraction_rate:.2f}%"
+                ),
+                "Correct/Extracted/Total": (  # 【新增明细：正确数/成功解析数/总完成数】
+                    f"{correct}/{extracted_count}/{completed_count}"
+                ),
+                "Progress": f"{completed_count}/{total}",
+            })
+
+        if not table_rows:
+            print("暂无有效的评测记录。")
+            return None
+
+        # 4. 转换为 Pandas DataFrame 并打印美观表格
+        df = pd.DataFrame(table_rows)
+        df = df[[
+            "Model",
+            "Strategy",
+            "Task",
+            "Accuracy (%)",
+            "Extraction Rate (%)",
+            "Correct/Extracted/Total",
+            "Progress",
+        ]]
+
+        print("\n📊 **综合评测结果与格式遵循率表格汇总**：\n")
+        print(df.to_string(index=False))
+        print("\n" + "=" * 70)
+        print("统计完成！")
+
+        return df
+
 
 def analyze_mismatches(
     checkpoint_file="benchmark_checkpoint_ds.json",
@@ -244,9 +338,72 @@ def analyze_mismatches(
 
   print(f"\n[提示] 分析报告已成功保存至: {output_txt}")
 
+def analyze_option_distribution(checkpoint_file="benchmark_checkpoint.json"):
+  if not os.path.exists(checkpoint_file):
+    print(f"错误: 找不到断点文件 {checkpoint_file}")
+    return None
+
+  with open(checkpoint_file, "r", encoding="utf-8") as f:
+    checkpoint_data = json.load(f)
+
+  distribution_rows = []
+
+  for task_key, records in checkpoint_data.items():
+    parts = task_key.split("__")
+    if len(parts) != 3:
+      continue
+    model_name, strategy_name, task_name = parts
+
+    preds = []
+    for idx_str, res in records.items():
+      raw_output = res.get("raw", "")
+      if raw_output is not None:
+        pred = extract_answer(raw_output)
+        # 如果解析失败，记为 "FAILED"
+        preds.append(pred if pred else "FAILED")
+
+    total = len(preds)
+    if total == 0:
+      continue
+
+    # 统计各选项频次
+    counts = Counter(preds)
+
+    distribution_rows.append({
+        "Model": model_name.split("/")[-1],
+        "Strategy": strategy_name,
+        "Task": task_name,
+        "A (%)": f"{(counts.get('A', 0) / total) * 100:.1f}%",
+        "B (%)": f"{(counts.get('B', 0) / total) * 100:.1f}%",
+        "C (%)": f"{(counts.get('C', 0) / total) * 100:.1f}%",
+        "D (%)": f"{(counts.get('D', 0) / total) * 100:.1f}%",
+        "E (%)": f"{(counts.get('E', 0) / total) * 100:.1f}%",
+        "Failed/Empty (%)": f"{(counts.get('FAILED', 0) / total) * 100:.1f}%",
+    })
+
+  df_dist = pd.DataFrame(distribution_rows)
+  print("\n📊 **模型预测选项分布统计（Choice Collapse Analysis）**：\n")
+  print(
+      df_dist.to_string(
+          index=False,
+          columns=[
+              "Model",
+              "Strategy",
+              "Task",
+              "A (%)",
+              "B (%)",
+              "C (%)",
+              "D (%)",
+              "E (%)",
+              "Failed/Empty (%)",
+          ],
+      )
+  )
+  return df_dist
 
 if __name__ == "__main__":
     #checkpoint_file= "benchmark_checkpoint.json"
     checkpoint_file = ("benchmark_checkpoint.json")
-    calculate_summary_from_checkpoint(checkpoint_file)
+    calculate_summary_from_checkpoint_neo(checkpoint_file)
     analyze_mismatches("benchmark_checkpoint.json")
+    analyze_option_distribution("benchmark_checkpoint.json")
