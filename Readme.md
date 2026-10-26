@@ -30,6 +30,7 @@
 在运行项目前，请确保安装了以下 Python 依赖库：
 
 ```bash
+pip install torch transformers datasets pandas tqdm
 ```
 
 --
